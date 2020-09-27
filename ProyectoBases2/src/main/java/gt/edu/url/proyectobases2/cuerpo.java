@@ -54,5 +54,57 @@ public class cuerpo {
                 .append("precio", precio);
         return nuevoDoc;
     }
+    public Document crearDocumentoCliente(String nombre, int telefono, int nit, String direccion){
+        MongoCollection<Document> colleccion= database.getCollection("clientes");//
+        long cant = colleccion.countDocuments();
+        cant += 1;//este el id que insertaremos
+        Document nuevoDoc = new Document();
+        nuevoDoc.append("_id", cant)
+                .append("nombre", nombre)
+                .append("telefono", telefono)
+                .append("nit", nit)
+                .append("direccion", direccion);
+        return nuevoDoc;
+    }
+    public Document crearDocumentoUsuario(String nombre, int acceso, String contra){
+        MongoCollection<Document> colleccion= database.getCollection("usuarios");//
+        long cant = colleccion.countDocuments();
+        cant += 1;//este el id que insertaremos
+        Document nuevoDoc = new Document();
+        cifrado cifrar = new cifrado();
+        contra = cifrar.run(contra);
+        System.out.println(contra + "contra");
+        nuevoDoc.append("_id", cant)
+                .append("nombre", nombre)
+                .append("acceso", acceso)
+                .append("password", contra);
+        return nuevoDoc;
+    }
+    public Document crearDocumentoProveedor(String nombre, int telefono, String empresa, String direccion){
+        MongoCollection<Document> colleccion= database.getCollection("proveedores");//
+        long cant = colleccion.countDocuments();
+        cant += 1;//este el id que insertaremos
+        Document nuevoDoc = new Document();
+        nuevoDoc.append("_id", cant)
+                .append("nombre", nombre)
+                .append("telefono", telefono)
+                .append("empresa", empresa)
+                .append("direccion", direccion);      
+        return nuevoDoc;
+    }//existencias hace referencia a cuantas unidades compro y float al total gastado
+        public Document crearDocumentoVenta(int clienteId, int productoId, int existencias, double precio){
+        MongoCollection<Document> colleccion= database.getCollection("ventas");//
+        long cant = colleccion.countDocuments();
+        cant += 1;//este el id que insertaremos
+        Document nuevoDoc = new Document();
+        double total2 = Math.round(precio*100) / 100.0;//decimal de dos digitos
+        nuevoDoc.append("_id", cant)
+                .append("clienteId", clienteId)
+                .append("productoId", productoId)
+                .append("existencias", existencias)
+                .append("precio", total2);      
+        return nuevoDoc;
+    }
+    
     
 }

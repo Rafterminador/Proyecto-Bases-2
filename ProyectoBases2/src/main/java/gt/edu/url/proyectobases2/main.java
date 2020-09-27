@@ -80,10 +80,29 @@ public class main {
         //cifrado preuba = new cifrado();
         //preuba.run();
         cuerpo aplicacion = new cuerpo();
-        nuevoDoc = aplicacion.crearDocumentoMenu("pan", 2, (float) 0.4);
-        aplicacion.insertarDatos("menu", nuevoDoc);
-        nuevoDoc = aplicacion.crearDocumentoMenu("mantequilla", 5, (float) 3.5);
-        aplicacion.insertarDatos("menu", nuevoDoc);
+//        nuevoDoc = aplicacion.crearDocumentoMenu("pan", 2, (float) 0.4);
+//        aplicacion.insertarDatos("menu", nuevoDoc);
+//        nuevoDoc = aplicacion.crearDocumentoMenu("mantequilla", 5, (float) 3.5);
+//        aplicacion.insertarDatos("menu", nuevoDoc);
+
+//          nuevoDoc = aplicacion.crearDocumentoCliente("luis", 1012, 11122, "zona 2");
+//          aplicacion.insertarDatos("clientes", nuevoDoc);
+
+//        nuevoDoc = aplicacion.crearDocumentoUsuario("Luis", 1, "contraprosd");
+//        aplicacion.insertarDatos("usuarios", nuevoDoc); //la contra de kelvin es contraprosd igual
+        
+//        nuevoDoc = aplicacion.crearDocumentoProveedor("Donald", 123, "fulanos", "zona 4");
+//        aplicacion.insertarDatos("proveedores", nuevoDoc); 
+
+//        nuevoDoc = aplicacion.crearDocumentoVenta(1, 1, 2, (float) 2.9);
+//        aplicacion.insertarDatos("ventas", nuevoDoc); 
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                crearSQL sql = new crearSQL();
+                sql.crear();
+            }
+        }, "Shutdown-thread"));
     }
     
 }
