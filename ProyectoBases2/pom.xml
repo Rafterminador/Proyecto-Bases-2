@@ -11,5 +11,10 @@
             <artifactId>mongodb-driver</artifactId>
             <version>3.12.7</version>
         </dependency>
+        <dependency>
+            <groupId>de.mkammerer</groupId>
+            <artifactId>argon2-jvm</artifactId>
+            <version>2.7</version>
+        </dependency>
     </dependencies>
 </project>
