@@ -80,6 +80,7 @@ public class main {
         //cifrado preuba = new cifrado();
         //preuba.run();
         cuerpo aplicacion = new cuerpo();
+        aplicacion.leer();
 //        nuevoDoc = aplicacion.crearDocumentoMenu("pan", 2, (float) 0.4);
 //        aplicacion.insertarDatos("menu", nuevoDoc);
 //        nuevoDoc = aplicacion.crearDocumentoMenu("mantequilla", 5, (float) 3.5);

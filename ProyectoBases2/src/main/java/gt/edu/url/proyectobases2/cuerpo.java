@@ -4,15 +4,18 @@
  * and open the template in the editor.
  */
 package gt.edu.url.proyectobases2;
+import com.mongodb.DBObject;
 import com.mongodb.ErrorCategory;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoWriteException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.types.ObjectId;
 import org.bson.Document;
-import com.mongodb.client.MongoCursor;
+
 /**
  *
  * @author ferna
@@ -92,7 +95,7 @@ public class cuerpo {
                 .append("direccion", direccion);      
         return nuevoDoc;
     }//existencias hace referencia a cuantas unidades compro y float al total gastado
-        public Document crearDocumentoVenta(int clienteId, int productoId, int existencias, double precio){
+    public Document crearDocumentoVenta(int clienteId, int productoId, int existencias, double precio){
         MongoCollection<Document> colleccion= database.getCollection("ventas");//
         long cant = colleccion.countDocuments();
         cant += 1;//este el id que insertaremos
@@ -105,6 +108,20 @@ public class cuerpo {
                 .append("precio", total2);      
         return nuevoDoc;
     }
-    
+    public void leer() {
+        System.out.println("Print the documents.");
+        MongoCollection<Document> colleccion= database.getCollection("ventas");//
+        MongoCursor cursor = colleccion.find().iterator();
+        try {
+            while (cursor.hasNext()) {
+                System.out.println(cursor.next().toString());
+            }
+
+        } finally {
+            cursor.close();
+        }
+    }
+
+}
     
 }
