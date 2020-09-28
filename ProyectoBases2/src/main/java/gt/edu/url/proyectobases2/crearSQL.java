@@ -46,7 +46,13 @@ public class crearSQL {
             }
             //escribo el archivo sql
             FileWriter myWriter = new FileWriter(path);
-            myWriter.write("CREATE DATABASE `prueba`;");
+            myWriter.write("DROP DATABASE IF EXISTS prueba;"
+                    +"\nCREATE DATABASE prueba;"
+                    +"\nUSE prueba;");
+            myWriter.write("\nCREATE TABLE otra (\n" +
+           "\n" +
+           ");\n" +
+           "COLLATE='latin1_swedish_ci';");
             myWriter.close();
             
         } catch (IOException e) {

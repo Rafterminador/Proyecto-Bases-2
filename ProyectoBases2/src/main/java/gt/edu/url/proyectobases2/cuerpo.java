@@ -4,17 +4,14 @@
  * and open the template in the editor.
  */
 package gt.edu.url.proyectobases2;
-import com.mongodb.DBObject;
 import com.mongodb.ErrorCategory;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoWriteException;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
-import org.bson.types.ObjectId;
 import org.bson.Document;
 import org.json.*;  
 import java.util.*; 
@@ -27,11 +24,36 @@ public class cuerpo {
             "mongodb+srv://fercho:1234fer@cluster0.mld3v.mongodb.net/prueba?retryWrites=true&w=majority");
     private MongoClient mongoClient = new MongoClient(uri);
     private MongoDatabase database = mongoClient.getDatabase("prueba");
-    ArrayList<Dictionary> listaClientes=new ArrayList<Dictionary>();
-    ArrayList<Dictionary> listaMenus=new ArrayList<Dictionary>();
-    ArrayList<Dictionary> listaProveedores=new ArrayList<Dictionary>();
-    ArrayList<Dictionary> listaUsuarios=new ArrayList<Dictionary>();
-    ArrayList<Dictionary> listaVentas=new ArrayList<Dictionary>();
+    private ArrayList<Dictionary> listaClientes=new ArrayList<Dictionary>();
+    private ArrayList<Dictionary> listaMenus=new ArrayList<Dictionary>();
+    private ArrayList<Dictionary> listaProveedores=new ArrayList<Dictionary>();
+    private ArrayList<Dictionary> listaUsuarios=new ArrayList<Dictionary>();
+    private ArrayList<Dictionary> listaVentas=new ArrayList<Dictionary>();
+    public cuerpo(){
+        actualizar();
+    }
+    public void actualizar(){
+        leerClientes();
+        leerMenu();
+        leerProveedores();
+        leerUsuarios();
+        leerVentas();
+    }
+    public  ArrayList getClientes(){
+        return listaClientes;
+    }
+    public  ArrayList getMenus(){
+        return listaMenus;
+    }
+    public  ArrayList getProveedores(){
+        return listaProveedores;
+    }
+    public  ArrayList getUsuarios(){
+        return listaUsuarios;
+    }
+    public  ArrayList getVentas(){
+        return listaVentas;
+    }
     public void insertarDatos(String tabla, Document Doc){
         //le mandamos el nombre de la tabla a insertar
 //        estas son:
