@@ -15,6 +15,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.types.ObjectId;
 import org.bson.Document;
+import org.json.*;  
 
 /**
  *
@@ -109,13 +110,43 @@ public class cuerpo {
         return nuevoDoc;
     }
     public void leer() {
-        System.out.println("Print the documents.");
         MongoCollection<Document> colleccion= database.getCollection("ventas");//
         MongoCursor cursor = colleccion.find().iterator();
+        String datos = "";
+        JSONObject jo;
         try {
             while (cursor.hasNext()) {
-                System.out.println(cursor.next().toString());
+                //System.out.println(cursor.next().toString());
+                datos = cursor.next().toString();
             }
+            System.out.println(datos);
+            datos = datos.substring(9, datos.length()-1);//es que por defecto mongo trae Document{...} entonces quito la palabra document
+            datos = datos.replace("=", ":");
+            String json = "";
+            for(int i = 0; i < datos.length(); i++){
+                if(datos.charAt(i) == ':' || datos.charAt(i) == '}' || datos.charAt(i) == ','){
+                    json += "\"";
+                }
+                json += datos.charAt(i);
+                if(datos.charAt(i) == '{'){
+                    json += "\"";
+                }
+                if(datos.charAt(i) == ' '){
+                    if(datos.charAt(i-1) == ','){
+                        json += "\"";
+                    }
+                }
+                if(datos.charAt(i) == ':'){
+                    json += "\"";
+                }
+                //System.out.println("dato"+ datos.charAt(i));
+            }
+            System.out.println("cadena:" + json);
+            //System.out.println("cadena " + datos);
+            
+            jo = new JSONObject(json);
+            String technology = jo.getString("precio");  
+            System.out.println(technology);  
 
         } finally {
             cursor.close();
