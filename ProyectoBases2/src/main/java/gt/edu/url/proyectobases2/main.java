@@ -25,6 +25,7 @@ public class main {
      */
     public static void main(String[] args) {
         Document nuevoDoc = new Document();
+        cuerpo aplicacion = new cuerpo();
 //        MongoClientURI uri = new MongoClientURI(
 //            "mongodb+srv://fercho:1234fer@cluster0.mld3v.mongodb.net/prueba?retryWrites=true&w=majority");
 //        MongoClient mongoClient = new MongoClient(uri);
@@ -77,10 +78,7 @@ public class main {
 //        }
 
 
-        //cifrado preuba = new cifrado();
-        //preuba.run();
-        cuerpo aplicacion = new cuerpo();
-        aplicacion.leer();
+        
 //        nuevoDoc = aplicacion.crearDocumentoMenu("pan", 2, (float) 0.4);
 //        aplicacion.insertarDatos("menu", nuevoDoc);
 //        nuevoDoc = aplicacion.crearDocumentoMenu("mantequilla", 5, (float) 3.5);
@@ -97,6 +95,21 @@ public class main {
 
 //        nuevoDoc = aplicacion.crearDocumentoVenta(1, 1, 2, (float) 2.9);
 //        aplicacion.insertarDatos("ventas", nuevoDoc); 
+
+//        aplicacion.leerClientes();//usar para crear una lista de datos
+//        aplicacion.leerClienteLista();//esta recorre los datos obtenidos
+
+//           aplicacion.leerMenu();//usar para crear una lista de datos
+//           aplicacion.leerMenuLista();//esta recorre los datos obtenidos
+
+//           aplicacion.leerProveedores();//usar para crear una lista de datos
+//           aplicacion.leerMenuProveedores();//esta recorre los datos obtenidos
+
+//        aplicacion.leerUsuarios();//usar para crear una lista de datos
+//        aplicacion.leerMenuUsuarios();//esta recorre los datos obtenidos
+
+            aplicacion.leerVentas();//usar para crear una lista de datos
+        aplicacion.leerMenuVentas();//esta recorre los datos obtenidos
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
