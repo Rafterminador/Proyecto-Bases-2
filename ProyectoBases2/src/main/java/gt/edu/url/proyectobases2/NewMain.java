@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import javax.swing.JOptionPane;
+import org.bson.Document;
 /**
  *
  * @author ferna
@@ -382,7 +383,11 @@ public class NewMain extends javax.swing.JFrame {
         }else if(precio1.getText().equals("")){
             JOptionPane.showMessageDialog(null,"No hay datos colocar","",JOptionPane.INFORMATION_MESSAGE);      
         }else{
-            System.out.println("me ejecuto");
+            cuerpo aplicacion = new cuerpo();
+            Document nuevoDoc = new Document();
+            nuevoDoc = aplicacion.crearDocumentoMenu(nombre1.getText(), Integer.parseInt(cantidad1.getText()), Float.parseFloat(precio1.getText()));
+            aplicacion.insertarDatos("menu", nuevoDoc);
+            llenarTablas();
             limpiar();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
